@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+
+<header>
+<div class="w3-container w3-blue w3-top"> 
+  <div class="w3-display-container" style="height:75px;">
+    <div class="w3-display-left">
+      <h1>Hamza eService & Computer Solutaion</h1>
+    </div>
+    <div class="w3-display-right">
+      {% if g.user %} 
+      <div class="dropdown">
+        <button class="dropbtn w3-blue">{{ g.user['username'] }} </button>
+        <div class="dropdown-content">
+          <a href="#">Change Data</a>
+          <a href="{{ url_for('auth.logout') }}">Log Out</a>
+        </div> 
+        {% else %}
+        <p>Current System Date and time now</p>
+    </div>{% endif %} 
+  </div>
+  </header>
+
+<section class="content" style="margin-top: 75px;">
+{% block content %}{% endblock %}
+</section>
+</body>
+</html>

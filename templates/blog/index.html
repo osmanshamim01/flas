@@ -1,0 +1,25 @@
+{% extends "blog/blogbase.html" %}
+
+{% block title %}index{% endblock %}
+
+{% block section2 %}
+<div class="w3-container">
+  <h1>Recent Job and Education Events
+    <span class="w3-right">
+      <a href="{{ url_for('blog.addevent') }}" class="w3-button w3-tiny">Add</a>
+      <a href="#" class="w3-button w3-tiny">Manage</a>
+    </span>
+  </h1>
+
+{% for event in events %}
+<div class="w3-panel w3-card w3-pale-blue">
+    <h4>{{ event['eventname'] }} of {{ event['organization'] }}</h4>
+      <p>Appication fee : {{ event['fee'] }}/- Taka only.
+      <br>Last Day: {{ event['deadline'] }}
+        <a class="w3-button w3-tiny w3-circle w3-green" href="{{ event['link'] }} " target="_blank">Apply Here .. </a>
+      </p>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}

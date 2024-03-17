@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block header %}
+<p>Sample Clock for user</p>
+{% endblock %}
+
+{% block content %}
+
+<div class="w3-container w3-center">
+  <h1 class="w3-jumbo">Shop Management System</h1>
+</div>
+
+{% for message in get_flashed_messages() %}
+<div class="w3-panel w3-pale-red w3-display-container" style="width:40%; margin: auto;">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright w3-tiny">x</span>
+  <p>{{ message }}</p>
+</div>
+{% endfor %}
+<br>
+<div class="w3-card-4" style="width:40%; margin: auto;">
+    <header class="w3-container w3-blue">
+      <h2 class="text-center">Log in to continue</h2>
+    </header>
+    <form class="w3-container" method="POST" action="{{ url_for('auth.login') }}">
+      <p>      
+      <label class="w3-text-blue" for="username"><b>Username</b></label>
+      <input class="w3-input w3-border" type="text" id="username" name="username" required></p>
+      <p>      
+      <label class="w3-text-blue" for="password"><b>Password</b></label>
+      <input class="w3-input w3-border" type="text" id="password" name="password" required></p>
+      <p>
+      <input type="checkbox" class="form-check-input" id="remember" name="remember">
+      <label class="form-check-label" for="remember">Remember me</label></p>   
+      <p><button class="w3-btn w3-blue"type="submit">Submit</button></p>
+    </form>
+    
+    <footer class="w3-container w3-blue">
+      <h5>if you not authorized, please dont touch above.</h5>
+    </footer>
+</div>
+{% endblock %}

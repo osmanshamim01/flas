@@ -1,0 +1,22 @@
+{% extends "blog/blogbase.html" %}
+
+{% block title %}addlink{% endblock %}
+
+{% block section2 %}
+<div class="w3-container">
+<br>
+
+<form class="w3-container w3-card-4" method="post" style="width: 75%; margin: auto;">
+  <h2 class="w3-text-blue">New link add form</h2>
+  <p>      
+  <label class="w3-text-blue"><b>Website organization</b></label>
+  <input class="w3-input w3-border" name="webname" id="webname" type="text" value="{{ request.form['webname'] }}" required></p>
+  <p>      
+  <label class="w3-text-blue"><b>Website address</b></label>
+  <input class="w3-input w3-border" name="website" id="website" type="text" value="{{ request.form['website'] }}" required></p>
+  <p>      
+  <button class="w3-btn w3-blue" type="submit">Save</button>
+  <a href="{{ url_for('blog.index') }}" class="w3-btn w3-red">Close</a></p>
+</form>
+</div>
+{% endblock %}

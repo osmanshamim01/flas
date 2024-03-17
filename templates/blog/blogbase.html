@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
+  <h3 class="w3-bar-item">Web links
+    <span class="w3-right">
+      <a href="{{ url_for('blog.addlink') }}" class="w3-button w3-tiny">Add</a>
+      <a href="#" class="w3-button w3-tiny">Manage</a>
+    </span>
+  </h3>
+  {% for link in links %}
+    <a href="{{ link['website'] }} " class="w3-bar-item w3-button" target="_blank">{{ link['webname'] }}</a>
+  {% endfor %}
+</div>
+
+<!-- section2 -->
+<div id="section2" style="margin-left:20%">
+
+  <div class="w3-bar w3-light-grey w3-border-bottom">
+    <a href="{{ url_for('blog.index') }}" class="w3-bar-item w3-button">Home</a>
+    <a href="https://www.microsoft.com" class="w3-bar-item w3-button" target="_blank">Microsoft</a>
+    <a href="https://www.google.com" class="w3-bar-item w3-button" target="_blank">Google</a>
+    <a href="https://www.facebook.com" class="w3-bar-item w3-button" target="_blank">Facebook</a>
+    <a href="https://www.youtube.com" class="w3-bar-item w3-button" target="_blank">Youtube</a>
+    <a href="https://www.youtube.com" class="w3-bar-item w3-button" target="_blank">Youtube</a>
+    <form action="htts://www.google.com/search" method="post" class="w3-right">
+      <input type="text" name="q" class="w3-input w3-bar-item w3-white" placeholder="Search..">
+      <button type="submit" class="w3-bar-item w3-button w3-green">Go</button>
+    </form>
+  </div>
+
+{% for message in get_flashed_messages() %}
+<div class="w3-panel w3-pale-red w3-display-container">
+  <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-red w3-display-topright w3-tiny">x</span>
+  <p>{{ message }}</p>
+</div>
+{% endfor %}
+
+{% block section2 %} {% endblock %}
+</div>
+{% endblock %}
