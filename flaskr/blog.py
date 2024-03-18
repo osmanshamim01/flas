@@ -69,3 +69,32 @@ def addevent():
             return redirect(url_for('blog.index'))
 
     return render_template('blog/addevent.html')
+
+def get_event(id, check_author=True):
+    event = get_db().execute(
+        'SELECT * '
+        ' FROM events '
+        ' WHERE id = ?',
+        (id,)
+    ).fetchone()
+
+    if event is None:
+        abort(404, f"Events id {id} doesn't exist.")
+
+    return event
+
+@bp.route('/eventmanage')
+@login_required
+def eventmanage():
+    db = get_db()
+    events = db.execute('SELECT eventname, organization, link, deadline, fee FROM events').fetchall()
+    return render_template('blog/eventmanage.html',  events=events)
+
+@bp.route('/<int:id>/eventdelete', methods=('POST',))
+@login_required
+def eventdelete(id):
+    get_event(id)
+    db = get_db()
+    db.execute('DELETE FROM post WHERE id = ?', (id,))
+    db.commit()
+    return redirect(url_for('blog.index'))

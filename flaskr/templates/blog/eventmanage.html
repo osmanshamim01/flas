@@ -1,0 +1,36 @@
+{% extends "blog/blogbase.html" %}
+
+{% block title %}addlink{% endblock %}
+
+{% block section2 %}
+<div class="w3-container">
+  <br>
+
+  <div class="w3-container">
+    <h2>Manage All Events and Circular</h2>
+   
+    <table class="w3-table w3-striped w3-border">
+      
+      <tr>
+        <th>Event ID</th>
+        <th>Event Name</th>
+        <th>links</th>
+        <th>Action</th>
+      </tr>
+      {% for event in events %}
+      <tr>
+        <td>{{ event['rowid'] }}</td>
+        <td>{{ event['eventname'] }} of {{ event['organization'] }}</td>
+        <td>{{ event['link'] }}</td>
+        <td>
+          <form action="{{ url_for('blog.eventdelete', id=event['id']) }}" method="post">
+            <input class="w3-button w3-tiny w3-circle w3-green" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+  </div>
+</div>
+{% endblock %}
